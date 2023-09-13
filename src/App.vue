@@ -10,8 +10,11 @@
 </script>
 
 <template>
-  <app-header />
+  <app-table v-if="isTable">
+    <app-header />
+  </app-table>
 
-  <app-table v-if="isTable" />
-  <app-cards v-else />
+  <app-cards v-else>
+    <app-header />
+  </app-cards>
 </template>
