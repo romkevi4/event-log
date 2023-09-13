@@ -1,0 +1,11 @@
+@import 'primevue/resources/themes/lara-light-indigo/theme.css';
+
+body {
+  width: 100vw;
+  min-height: 100vh;
+  color: #000;
+  font-size: 16px;
+  display: flex;
+
+  font-family: var(--font-family);
+}
