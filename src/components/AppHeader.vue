@@ -4,6 +4,8 @@
   import InputText from 'primevue/inputtext'
   import Button from 'primevue/button'
 
+  import { pageView } from '@/utils/initialData'
+
   interface PropsAppHeader {
     isTable: boolean,
   }
@@ -11,8 +13,8 @@
   const props = defineProps<PropsAppHeader>()
 
   console.log(props.isTable)
-  const value = ref<string>('Таблица')
-  const options = ref<string[]>(['Таблица', 'Карточки'])
+  const value = ref<string>(pageView[0])
+  const options = ref<string[]>(pageView)
 
   // const onToggle = () => props.isTable = !props.isTable
 
@@ -20,7 +22,7 @@
 
 <template>
   <div class="pb-4 w-full flex items-center justify-between">
-    <div class="card flex justify-content-center">
+<!--    <div class="card flex justify-content-center">-->
       <SelectButton
         v-model="value"
         :options="options"
@@ -33,9 +35,8 @@
           }),
           label: 'text-sm text-gray-700',
         }"
-
       />
-    </div>
+<!--    </div>-->
 
     <div class="flex items-center justify-between">
       <InputText

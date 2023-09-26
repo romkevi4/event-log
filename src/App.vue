@@ -4,7 +4,7 @@
   import AppHeader from '@/components/AppHeader.vue'
   // import AppTable from '@/components/AppTable.vue'
   // import AppCards from '@/components/AppCards.vue'
-  // import AppFooter from '@/components/AppFooter.vue'
+  import AppFooter from '@/components/AppFooter.vue'
 
   let isTable = ref<boolean>(true)
 
@@ -14,5 +14,5 @@
   <app-header :isTable="isTable" />
 <!--  <app-table v-if="isTable" />-->
 <!--  <app-cards v-else />-->
-<!--  <app-footer />-->
+  <app-footer />
 </template>
