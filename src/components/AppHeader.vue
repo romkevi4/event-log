@@ -21,22 +21,20 @@
 </script>
 
 <template>
-  <div class="pb-4 w-full flex items-center justify-between">
-<!--    <div class="card flex justify-content-center">-->
-      <SelectButton
-        v-model="value"
-        :options="options"
-        aria-labelledby="basic"
-        :pt="{
-          button: ({ context }) => ({
-            class: [
-              'px-4 py-1',
-            ],
-          }),
-          label: 'text-sm text-gray-700',
-        }"
-      />
-<!--    </div>-->
+  <div class="pb-3 w-full flex items-center justify-between">
+    <SelectButton
+      v-model="value"
+      :options="options"
+      aria-labelledby="basic"
+      :pt="{
+        button: () => ({
+          class: [
+            'px-4 py-1',
+          ],
+        }),
+        label: 'text-sm text-gray-700',
+      }"
+    />
 
     <div class="flex items-center justify-between">
       <InputText

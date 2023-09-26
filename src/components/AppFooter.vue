@@ -9,13 +9,13 @@
 </script>
 
 <template>
-  <div class="w-full flex items-center justify-end">
+  <div class="pt-3 w-full flex flex-shrink-0 items-center justify-end">
     <SelectButton
       v-model="value"
       :options="options"
       aria-labelledby="basic"
       :pt="{
-        button: ({ context }) => ({
+        button: () => ({
           class: [
             'px-4 py-1',
           ],
