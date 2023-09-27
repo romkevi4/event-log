@@ -8,6 +8,7 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "pinia": "^2.1.6",
     "primevue": "^3.34.1",
     "vue": "^3.2.13"
   },

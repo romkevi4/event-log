@@ -9,6 +9,7 @@ body {
   color: #000;
   font-size: 16px;
   display: flex;
+  box-sizing: border-box;
 
   font-family: var(--font-family);
 }
