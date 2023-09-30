@@ -9,7 +9,7 @@
 </script>
 
 <template>
-  <div class="pt-3 w-full flex flex-shrink-0 items-center justify-end">
+  <div class="p-3 w-full flex flex-shrink-0 items-center justify-end">
     <SelectButton
       v-model="value"
       :options="options"

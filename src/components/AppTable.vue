@@ -4,73 +4,76 @@
   import AppTableRow from './AppTableRow.vue'
   import AppRowInfo from './AppRowInfo.vue'
 
-  const tableContainer = ref<HTMLElement | null>(null);
-  const windowHeight = ref<number>(window.innerHeight);
-  const numRows = ref<number>(10); // Начальное количество строк
+  // import { example } from '@/utils/initialData'
+  import { NUM_ROWS, INITIAL_ROW_HEIGHT } from '@/utils/constants'
+  // import { IEvent } from '../../models'
 
-  // Функция для определения количества строк, которые могут поместиться на экране
+  // const arr = ref<IEvent[]>(example);
+
+  const tableContainer = ref<HTMLElement | null>(null)
+  const windowHeight = ref<number>(window.innerHeight)
+  const rowHeight = ref<number>(INITIAL_ROW_HEIGHT)
+
   function calculateNumRows() {
-    console.log(tableContainer.value);
     if (tableContainer.value) {
       const containerHeight = tableContainer.value.clientHeight;
-      console.log(containerHeight);
-      const rowHeight = 40; // Предположим, что высота строки составляет 40 пикселей
-      numRows.value = Math.floor(containerHeight / rowHeight);
-      console.log(numRows.value);
+      rowHeight.value = Math.floor(containerHeight / NUM_ROWS)
     }
   }
 
-  // Обновление высоты окна при изменении размеров экрана
   function updateWindowHeight() {
-    windowHeight.value = window.innerHeight;
-    calculateNumRows();
+    windowHeight.value = window.innerHeight
+    calculateNumRows()
   }
 
   onMounted(() => {
-    // Инициализируем количество строк и отслеживаем изменение размеров экрана
-    calculateNumRows();
-    window.addEventListener('resize', updateWindowHeight);
-  });
+    calculateNumRows()
+    window.addEventListener('resize', updateWindowHeight)
+  })
 
   onBeforeUnmount(() => {
-    // Отменяем слушателя событий при размонтировании компонента
-    window.removeEventListener('resize', updateWindowHeight);
-  });
-
+    window.removeEventListener('resize', updateWindowHeight)
+  })
 </script>
 
 <template>
-    <div class="table__container w-full border-4 border-black rounded-md flex-1" ref="tableContainer">
-    <table class="w-full border-collapse">
-      <thead class="w-full h-1 bg-gray-300">
-        <tr>
-          <th class="pl-2 w-1/6 text-left">Дата</th>
-          <th class="pl-2 w-1/6 text-left border-l-2 border-black">Важность</th>
-          <th class="pl-2 w-1/6 text-left border-l-2 border-black">Оборудование</th>
-          <th class="pl-2 w-2/6 text-left border-l-2 border-black">Сообщение</th>
-          <th class="pl-2 w-1/6 text-left border-l-2 border-black bg-gr">Ответственный</th>
-        </tr>
-      </thead>
-
-      <tbody>
-        <app-table-row
-          v-for="index in numRows"
-          :key="index"
-          :class="{
-            'bg-gray-100': index % 2 === 0,
-            'bg-white': index % 2 !== 0
+  <div class="pl-3 pr-3 w-full flex-1">
+    <div class="w-full h-full border-4 border-black rounded-md flex-1">
+      <table class="w-full h-full table-auto border-collapse">
+        <thead
+          class="w-full bg-gray-300"
+          :style="{
+            'max-height': `${rowHeight}px`
           }"
         >
-          <app-row-info />
+          <tr class="w-full">
+            <th class="pl-1 text-left">Дата</th>
+            <th class="pl-1 text-left border-l-2 border-black">Важность</th>
+            <th class="pl-1 text-left border-l-2 border-black">Оборудование</th>
+            <th class="pl-1 text-left border-l-2 border-black">Сообщение</th>
+            <th class="pl-1 text-left border-l-2 border-black">Ответственный</th>
+          </tr>
+        </thead>
 
-        </app-table-row>
-      </tbody>
-    </table>
+        <tbody>
+          <app-table-row
+            v-for="index in NUM_ROWS"
+            :key="index"
+            :class="{
+              'bg-gray-100': index % 2 === 0,
+              'bg-white': index % 2 !== 0,
+            }"
+            :style="{
+              'max-height': `${rowHeight}px`
+            }"
+          >
+            <app-row-info />
+          </app-table-row>
+        </tbody>
+      </table>
+    </div>
   </div>
 </template>
 
 <style scoped>
-  .table__container {
-    overflow: auto; /* Добавьте прокрутку по мере необходимости */
-  }
 </style>

@@ -21,7 +21,7 @@
 </script>
 
 <template>
-  <div class="pb-3 w-full flex items-center justify-between">
+  <div class="p-3 w-full flex items-center justify-between">
     <SelectButton
       v-model="value"
       :options="options"
@@ -42,7 +42,7 @@
         :pt="{
           root: () => ({
             class: [
-              'mr-4 px-2 py-1'
+              'mr-4 px-2 py-1',
             ],
           }),
         }"
@@ -55,14 +55,14 @@
         :pt="{
           root: () => ({
             class: [
-              'px-4 py-1'
+              'px-4 py-1',
             ],
           }),
           label: () => ({
             class: [
               'text-sm text-gray-700',
-            ]
-        }),
+            ],
+          }),
         }"
       />
     </div>
