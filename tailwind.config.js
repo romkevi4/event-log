@@ -51,6 +51,9 @@ module.exports = {
         '.grid-area-message-value': {
           'grid-area': 'message-value',
         },
+        '.object-cover': {
+          'object-fit': 'cover',
+        },
       };
 
       addUtilities(newUtilities, ['responsive', 'hover']);

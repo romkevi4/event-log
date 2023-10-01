@@ -6,12 +6,13 @@
   import AppCards from '@/components/AppCards.vue'
   import AppFooter from '@/components/AppFooter.vue'
 
-  let isTable = ref<boolean>(false)
+  const isTable = ref<boolean>(true)
+  const onToggleDisplay = (value: boolean) => isTable.value = value
 
 </script>
 
 <template>
-  <app-header :isTable="isTable" />
+  <app-header :isTable="isTable" @toggle-display="onToggleDisplay" />
   <app-table v-if="isTable" />
   <app-cards v-else />
   <app-footer />

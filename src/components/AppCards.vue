@@ -3,7 +3,7 @@
 </script>
 
 <template>
-  <div class="pl-3 pr-3 w-full h-full grid gap-x-20 gap-y-16 grid-cols-3 grid-rows-4 ">
+  <div class="pl-3 pr-3 w-full h-full grid gap-x-24 gap-y-16 grid-cols-3 grid-rows-4">
     <app-card />
     <app-card />
     <app-card />

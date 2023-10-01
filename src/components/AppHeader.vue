@@ -1,5 +1,5 @@
 <script setup lang="ts">
-  import { defineProps, ref } from 'vue'
+  import { defineProps, ref, defineEmits } from 'vue'
   import SelectButton from 'primevue/selectbutton'
   import InputText from 'primevue/inputtext'
   import Button from 'primevue/button'
@@ -11,12 +11,12 @@
   }
 
   const props = defineProps<PropsAppHeader>()
+  const emits = defineEmits(['toggle-display'])
 
-  console.log(props.isTable)
   const value = ref<string>(pageView[0])
   const options = ref<string[]>(pageView)
 
-  // const onToggle = () => props.isTable = !props.isTable
+  const onToggle = () => emits('toggle-display', !props.isTable)
 
 </script>
 
@@ -34,6 +34,7 @@
         }),
         label: 'text-sm text-gray-700',
       }"
+      @click="onToggle"
     />
 
     <div class="flex items-center justify-between">
