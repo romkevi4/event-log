@@ -1,18 +1,14 @@
 interface IEvent {
   date: Date,
   importance: string,
-  equipment: string,
+  equipment?: string,
   message: string,
   responsible: string
   avatar?: string,
   iconImportance?: string
-}
-
-interface IEventLog {
-  events: IEvent[],
+  isRead: boolean,
 }
 
 export type {
-  IEvent,
-  IEventLog
+  IEvent
 }

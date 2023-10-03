@@ -1,12 +1,28 @@
 <script setup lang="ts">
+  import { defineProps, defineEmits } from 'vue'
+
   import iconCross from '../assets/icon-cross.png'
   import iconCross1 from '../assets/icon-cross.png'
   import defaultAvatar from '../assets/default-avatar.svg'
 
+  interface PropsAppCard {
+    isReadEvent: boolean,
+  }
+
+  const props = defineProps<PropsAppCard>()
+  const emits = defineEmits(['on-read-event'])
+
+  const onRead = () => {
+    emits('on-read-event', !props.isReadEvent)
+  }
 </script>
 
 <template>
-  <div class="p-3 w-full h-full border-4 border-black rounded-md grid grid-template-custom bg-gray-200">
+  <div
+    class="p-3 w-full h-full border-4 border-black rounded-md grid grid-template-custom hover:cursor-pointer"
+    :class="isReadEvent ? 'bg-gray-200' : 'bg-slate-400'"
+    @click="onRead"
+  >
     <span class="pr-1 grid-area-date self-center">Дата</span>
     <span class="grid-area-date-value self-center">10.12.2022 10:00:14</span>
 

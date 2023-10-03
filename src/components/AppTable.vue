@@ -1,18 +1,21 @@
 <script setup lang="ts">
   import { ref, onMounted, onBeforeUnmount } from 'vue'
 
-  import AppTableRow from './AppTableRow.vue'
+  import { useGlobalStore } from '../../store/store'
+
+  // import AppTableRow from './AppTableRow.vue'
   import AppRowInfo from './AppRowInfo.vue'
 
-  // import { example } from '@/utils/initialData'
   import { NUM_ROWS, INITIAL_ROW_HEIGHT } from '@/utils/constants'
-  // import { IEvent } from '../../models'
 
-  // const arr = ref<IEvent[]>(example);
+  const store = useGlobalStore()
 
   const tableContainer = ref<HTMLElement | null>(null)
   const windowHeight = ref<number>(window.innerHeight)
   const rowHeight = ref<number>(INITIAL_ROW_HEIGHT)
+  const isReadEvent = ref<boolean>(false)
+
+  const onReadEvent = (value: boolean) => isReadEvent.value = value
 
   function calculateNumRows() {
     if (tableContainer.value) {
@@ -24,6 +27,22 @@
   function updateWindowHeight() {
     windowHeight.value = window.innerHeight
     calculateNumRows()
+  }
+
+  const setBackgroundColorOfRow = (isReadEvent: boolean, index: number) => {
+    if (!isReadEvent) {
+      console.log('bg-slate-400')
+      return 'bg-slate-400'
+
+    } else {
+      if (index % 2 === 0) {
+        console.log('bg-gray-100')
+        return 'bg-gray-100'
+      } else {
+        console.log('bg-white')
+        return 'bg-white'
+      }
+    }
   }
 
   onMounted(() => {
@@ -56,19 +75,22 @@
         </thead>
 
         <tbody>
-          <app-table-row
+          <tr
             v-for="index in NUM_ROWS"
             :key="index"
-            :class="{
-              'bg-gray-100': index % 2 === 0,
-              'bg-white': index % 2 !== 0,
-            }"
+            class="hover:cursor-pointer"
+            :class="setBackgroundColorOfRow(isReadEvent, index)"
             :style="{
               'max-height': `${rowHeight}px`
             }"
+            @on-read-event="onReadEvent"
           >
-            <app-row-info />
-          </app-table-row>
+            <app-row-info
+              v-if="store.currentEventLog.length > 0"
+              :item="store.currentEventLog[index]"
+              :isReadEvent="isReadEvent"
+            />
+          </tr>
         </tbody>
       </table>
     </div>

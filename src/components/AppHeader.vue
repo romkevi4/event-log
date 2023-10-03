@@ -17,7 +17,6 @@
   const options = ref<string[]>(pageView)
 
   const onToggle = () => emits('toggle-display', !props.isTable)
-
 </script>
 
 <template>
